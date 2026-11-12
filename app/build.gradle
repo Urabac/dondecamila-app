@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.dondecamila.panel'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.dondecamila.panel"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // Firma fija: así cada versión nueva se instala encima de la anterior sin desinstalar
+    signingConfigs {
+        fija {
+            storeFile file('dondecamila.keystore')
+            storePassword 'dondecamila2026'
+            keyAlias 'dondecamila'
+            keyPassword 'dondecamila2026'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.fija
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
